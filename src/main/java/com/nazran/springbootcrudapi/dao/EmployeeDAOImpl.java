@@ -27,20 +27,22 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 
 	@Override
 	public Employee get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session currentSession = entityManager.unwrap(Session.class);
+		Employee employeeObj = currentSession.get(Employee.class, id);
+		return employeeObj;
 	}
 
 	@Override
 	public void save(Employee employee) {
-		// TODO Auto-generated method stub
-		
+		Session currentSession = entityManager.unwrap(Session.class);
+		currentSession.saveOrUpdate(employee);
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		Session currentSession = entityManager.unwrap(Session.class);
+		Employee employeeObj = currentSession.get(Employee.class, id);
+		currentSession.delete(employeeObj);
 	}
 
 }
